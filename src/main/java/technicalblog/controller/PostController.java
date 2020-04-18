@@ -1,7 +1,6 @@
 package technicalblog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,21 +8,20 @@ import technicalblog.model.Post;
 import technicalblog.service.PostService;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 @Controller
-public class HomeController {
+public class PostController {
 
     @Autowired
     private PostService postService;
 
-    @RequestMapping("/")
-    public String getAllPosts(Model model){
+    @RequestMapping("posts")
+    public String getUserPosts(Model model){
 
-        ArrayList<Post> posts=postService.getAllPosts();
+        ArrayList<Post> posts = postService.getOnePost();
 
         model.addAttribute("posts",posts);
 
-        return "index";
+        return "posts";
     }
 }
